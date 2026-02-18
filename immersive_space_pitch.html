@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Імерсивний цифровий простір | One Pager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    * { font-feature-settings: "cv02", "cv03", "cv04", "cv11"; }
+    body { font-family: 'Inter', sans-serif; }
+    .mono { font-family: 'IBM Plex Mono', monospace; }
+    
+    .glass-panel {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    
+    .glass-card {
+      background: rgba(255, 255, 255, 0.02);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    
+    ::-webkit-scrollbar { width: 0px; background: transparent; }
+    
+    body { scroll-behavior: smooth; }
+    
+    .section {
+      min-height: 100vh;
+      padding: 120px 24px 80px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 0.8; }
+    }
+    
+    .animate-glow {
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    #gridCanvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes hsl-flow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    .hsl-line {
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        hsl(0, 80%, 60%),
+        hsl(60, 80%, 60%),
+        hsl(120, 80%, 60%),
+        hsl(180, 80%, 60%),
+        hsl(240, 80%, 60%),
+        hsl(300, 80%, 60%),
+        hsl(360, 80%, 60%)
+      );
+      background-size: 200% 100%;
+      animation: hsl-flow 4s linear infinite;
+    }
+  </style>
+</head>
+<body class="bg-black text-white antialiased selection:bg-white selection:text-black">
+    
+    <!-- Background Image 1 (dark room) -->
+    <div class="fixed inset-0 z-0" id="bg1">
+      <img src="pic/Transform_the_room_into_complete_darkness_with_min-1770904743471.png" alt="" class="w-full h-full object-cover scale-105" style="opacity:0.2">
+    </div>
+    
+    <!-- Background Image 2 (colorful projection) -->
+    <div class="fixed inset-0 z-0" id="bg2" style="opacity:0">
+      <img src="pic/Create_a_single_seamless_abstract_projection_cover-1770902957659.png" alt="" class="w-full h-full object-cover scale-105" style="opacity:0.2">
+    </div>
+    
+    <!-- Background Image 3 (cosmic nebula) -->
+    <div class="fixed inset-0 z-0" id="bg3" style="opacity:0">
+      <img src="pic/Transform_the_cosmic_nebula_projection_on_the_wall-1770903860408.png" alt="" class="w-full h-full object-cover scale-105" style="opacity:0.2">
+    </div>
+    
+    <!-- Dynamic Background -->
+    <div class="fixed inset-0 z-0 opacity-50">
+      <div class="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[150px] animate-glow"></div>
+      <div class="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-purple-500/10 rounded-full blur-[150px] animate-glow" style="animation-delay: 1.5s;"></div>
+    </div>
+    
+    <!-- Grid + Dots overlay (canvas) -->
+    <canvas id="gridCanvas"></canvas>
+    
+    <!-- HSL Line -->
+    <div class="fixed top-0 left-0 right-0 z-50 hsl-line opacity-60"></div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 glass-panel rounded-full py-2 px-4 shadow-2xl w-fit">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center">
+          <iconify-icon icon="solar:layers-minimalistic-linear" width="16"></iconify-icon>
+        </div>
+        <span class="text-xs font-medium tracking-tight text-white/90">IMMERSIVE SPACE</span>
+      </div>
+    </nav>
+      
+    <!-- SECTION 1: Title -->
+    <section class="section" id="hero">
+        <div class="text-center max-w-4xl">
+          <h1 class="text-4xl md:text-7xl font-medium tracking-tight leading-[1.1] mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+            Імерсивний<br>цифровий простір
+          </h1>
+          
+          <p class="text-base md:text-lg text-white/50 max-w-3xl mx-auto leading-relaxed font-light mb-12 whitespace-nowrap">
+            Гібридний простір цифрових мистецтв, едютейнменту та нічної культури
+          </p>
+          
+          <div class="flex items-center justify-center gap-8 text-sm text-white/40">
+            <div class="flex items-center gap-2">
+              <iconify-icon icon="solar:sun-2-linear" width="18" class="text-amber-400/70"></iconify-icon>
+              <span>Музей вдень</span>
+            </div>
+            <div class="w-8 h-px bg-white/20"></div>
+            <div class="flex items-center gap-2">
+              <iconify-icon icon="solar:moon-stars-linear" width="18" class="text-purple-400/70"></iconify-icon>
+              <span>Клуб вночі</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- SECTION 2: Concept Day/Night -->
+    <section class="section" id="concept">
+        <div class="w-full max-w-5xl">
+          <div class="text-center mb-12">
+            <p class="text-[10px] mono uppercase tracking-widest text-white/40 mb-4">Концепція</p>
+            <h2 class="text-3xl md:text-5xl font-medium tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+              Одна локація — диверсифікована<br>бізнес-модель
+            </h2>
+          </div>
+          
+          <div class="glass-panel rounded-2xl md:rounded-3xl p-1 overflow-hidden">
+            <div class="bg-black/40 rounded-[20px] overflow-hidden">
+              <div class="grid md:grid-cols-2 gap-px bg-white/5">
+                
+                <!-- Day Mode -->
+                <div class="bg-black/60 p-8 md:p-10 hover:bg-black/40 transition-colors duration-500 relative overflow-hidden">
+                  <div class="absolute top-0 right-0 w-40 h-40 bg-amber-500/5 blur-[80px] rounded-full"></div>
+                  
+                  <div class="flex justify-between items-start mb-10">
+                    <div class="flex items-center gap-3">
+                      <div class="p-2.5 rounded-xl bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                        <iconify-icon icon="solar:sun-2-linear" width="20"></iconify-icon>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-white">Day Mode</h3>
+                        <p class="text-[10px] text-white/40 mono">09:00 — 19:00</p>
+                      </div>
+                    </div>
+                    <span class="text-[10px] px-2 py-1 rounded border border-white/10 text-white/50">Edutainment</span>
+                  </div>
+                  
+                  <div class="space-y-6">
+                    <div>
+                      <div class="text-[10px] uppercase tracking-wider text-white/40 mb-3">Формат</div>
+                      <div class="flex flex-wrap gap-2">
+                        <span class="text-xs border border-white/10 px-3 py-1.5 rounded-full text-white/70">Імерсивні виставки</span>
+                        <span class="text-xs border border-white/10 px-3 py-1.5 rounded-full text-white/70">Освітній хаб</span>
+                        <span class="text-xs border border-white/10 px-3 py-1.5 rounded-full text-white/70">Інтерактив</span>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="text-[10px] uppercase tracking-wider text-white/40 mb-3">Аудиторія</div>
+                      <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-white/5 px-3 py-1.5 rounded-full text-white/60">Сім'ї</span>
+                        <span class="text-xs bg-white/5 px-3 py-1.5 rounded-full text-white/60">Школи</span>
+                        <span class="text-xs bg-white/5 px-3 py-1.5 rounded-full text-white/60">Туристи</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Night Mode -->
+                <div class="bg-black/60 p-8 md:p-10 hover:bg-black/40 transition-colors duration-500 relative overflow-hidden">
+                  <div class="absolute bottom-0 left-0 w-40 h-40 bg-purple-500/5 blur-[80px] rounded-full"></div>
+                  
+                  <div class="flex justify-between items-start mb-10">
+                    <div class="flex items-center gap-3">
+                      <div class="p-2.5 rounded-xl bg-purple-500/10 text-purple-400 border border-purple-500/20">
+                        <iconify-icon icon="solar:moon-stars-linear" width="20"></iconify-icon>
+                      </div>
+                      <div>
+                        <h3 class="text-sm font-medium text-white">Night Mode</h3>
+                        <p class="text-[10px] text-white/40 mono">20:00 — 03:00</p>
+                      </div>
+                    </div>
+                    <span class="text-[10px] px-2 py-1 rounded border border-white/10 text-white/50">Night Economy</span>
+                  </div>
+                  
+                  <div class="space-y-6">
+                    <div>
+                      <div class="text-[10px] uppercase tracking-wider text-white/40 mb-3">Формат</div>
+                      <div class="flex flex-wrap gap-2">
+                        <span class="text-xs border border-white/10 px-3 py-1.5 rounded-full text-white/70">Техно вечірки</span>
+                        <span class="text-xs border border-white/10 px-3 py-1.5 rounded-full text-white/70">AV-перформанси</span>
+                        <span class="text-xs border border-white/10 px-3 py-1.5 rounded-full text-white/70">Корпоративи</span>
+                      </div>
+                    </div>
+                    <div>
+                      <div class="text-[10px] uppercase tracking-wider text-white/40 mb-3">Аудиторія</div>
+                      <div class="flex flex-wrap gap-2">
+                        <span class="text-xs bg-white/5 px-3 py-1.5 rounded-full text-white/60">21+</span>
+                        <span class="text-xs bg-white/5 px-3 py-1.5 rounded-full text-white/60">B2B</span>
+                        <span class="text-xs bg-white/5 px-3 py-1.5 rounded-full text-white/60">Туристи</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- SECTION 3: Dark Matter Reference -->
+    <section class="section" id="dark-matter">
+        <div class="w-full max-w-5xl">
+          <div class="mb-8">
+            <p class="text-[10px] mono uppercase tracking-widest text-white/40 mb-4">Референс №1</p>
+            <h2 class="text-3xl md:text-5xl font-medium tracking-tight">
+              Dark Matter
+              <span class="text-white/30 text-2xl md:text-3xl ml-3">Берлін</span>
+            </h2>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="space-y-4">
+              <div class="glass-card rounded-2xl p-6 hover:bg-white/[0.04] transition-colors">
+                <div class="flex items-start gap-4">
+                  <div class="p-2 rounded-lg bg-white/5 text-white/60">
+                    <iconify-icon icon="solar:buildings-3-linear" width="20"></iconify-icon>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-white mb-1">Індустріальна локація</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Переобладнаний завод — ідеальний "Black Box" для світлових інсталяцій</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="glass-card rounded-2xl p-6 hover:bg-white/[0.04] transition-colors">
+                <div class="flex items-start gap-4">
+                  <div class="p-2 rounded-lg bg-white/5 text-white/60">
+                    <iconify-icon icon="solar:mirror-left-linear" width="20"></iconify-icon>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-white mb-1">SKALAR</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Кінетичні дзеркала + світлові промені. Вдень виставка, ввечері техно-концерти</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="glass-card rounded-2xl p-6 hover:bg-white/[0.04] transition-colors">
+                <div class="flex items-start gap-4">
+                  <div class="p-2 rounded-lg bg-white/5 text-white/60">
+                    <iconify-icon icon="solar:pallete-2-linear" width="20"></iconify-icon>
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-medium text-white mb-1">WHITEvoid Studio</h4>
+                    <p class="text-xs text-white/50 leading-relaxed">Christopher Bauder — гарантія високої художньої якості</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-panel rounded-2xl p-1 overflow-hidden h-fit">
+              <div class="bg-black/60 rounded-xl overflow-hidden">
+                <img src="bg-night.png" alt="Immersive Space" class="w-full h-64 object-cover opacity-80">
+                <div class="p-4 border-t border-white/5">
+                  <p class="text-[10px] mono text-white/40 text-center">Успішний приклад перетворення промислового складу на храм світла та звуку</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- SECTION 4: Global Cases -->
+    <section class="section" id="global-cases">
+        <div class="w-full max-w-5xl">
+          <div class="text-center mb-10">
+            <p class="text-[10px] mono uppercase tracking-widest text-white/40 mb-4">Глобальні референси</p>
+            <h2 class="text-3xl md:text-5xl font-medium tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+              Лідери ринку
+            </h2>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="glass-panel rounded-2xl overflow-hidden group hover:border-cyan-500/20 transition-colors">
+              <div class="h-1 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+              <div class="p-8">
+                <div class="flex items-center justify-between mb-6">
+                  <span class="text-[10px] mono uppercase tracking-widest text-cyan-400/70">Токіо, Японія</span>
+                  <iconify-icon icon="solar:arrow-right-up-linear" class="text-white/20 group-hover:text-white/50 transition-colors" width="16"></iconify-icon>
+                </div>
+                <h3 class="text-2xl font-medium text-white mb-4">teamLab</h3>
+                <p class="text-sm text-white/50 leading-relaxed mb-6">
+                  Масштаб і безшовність досвіду <span class="text-cyan-400">"Borderless"</span>. Рекордні показники відвідуваності.
+                </p>
+                <div class="flex items-center gap-4">
+                  <div class="text-center">
+                    <div class="text-2xl font-medium text-white">2.5M+</div>
+                    <div class="text-[10px] text-white/40">відвідувачів / рік</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-panel rounded-2xl overflow-hidden group hover:border-purple-500/20 transition-colors">
+              <div class="h-1 bg-gradient-to-r from-purple-500 to-pink-500"></div>
+              <div class="p-8">
+                <div class="flex items-center justify-between mb-6">
+                  <span class="text-[10px] mono uppercase tracking-widest text-purple-400/70">США</span>
+                  <iconify-icon icon="solar:arrow-right-up-linear" class="text-white/20 group-hover:text-white/50 transition-colors" width="16"></iconify-icon>
+                </div>
+                <h3 class="text-2xl font-medium text-white mb-4">Artechouse</h3>
+                <p class="text-sm text-white/50 leading-relaxed mb-6">
+                  Комерціалізація через <span class="text-purple-400">XR Bar</span> та нічні сеанси "After Dark". Date Night формат.
+                </p>
+                <div class="flex items-center gap-4">
+                  <div class="text-center">
+                    <div class="text-2xl font-medium text-white">3</div>
+                    <div class="text-[10px] text-white/40">локації в США</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- SECTION 5: Comparison -->
+    <section class="section" id="comparison">
+        <div class="w-full max-w-5xl">
+          <div class="mb-10">
+            <p class="text-[10px] mono uppercase tracking-widest text-white/40 mb-4">Стратегічна перевага</p>
+            <h2 class="text-3xl md:text-4xl font-medium tracking-tight max-w-3xl leading-tight">
+              Ми інвестуємо не в декорації, а в технології, що дозволяють змінювати реальність
+              <span class="text-white/30">миттєво</span>
+            </h2>
+          </div>
+          
+          <div class="glass-panel rounded-2xl overflow-hidden">
+            <div class="bg-black/40">
+              <div class="grid grid-cols-3 gap-px bg-white/5 text-[11px] mono uppercase tracking-wider">
+                <div class="bg-black/60 p-4 text-white/40">Параметр</div>
+                <div class="bg-black/60 p-4 text-red-400/70 text-center">Theme Park</div>
+                <div class="bg-black/60 p-4 text-green-400/70 text-center">Digital Space</div>
+              </div>
+              
+              <div class="divide-y divide-white/5">
+                <div class="grid grid-cols-3 gap-px bg-white/5">
+                  <div class="bg-black/60 p-4 text-sm text-white/70">Основний актив</div>
+                  <div class="bg-black/60 p-4 text-sm text-white/40 text-center">Бетон, сталь</div>
+                  <div class="bg-black/60 p-4 text-sm text-white/70 text-center">Технології, контент</div>
+                </div>
+                <div class="grid grid-cols-3 gap-px bg-white/5">
+                  <div class="bg-black/60 p-4 text-sm text-white/70">Зміна теми</div>
+                  <div class="bg-black/60 p-4 text-sm text-white/40 text-center">Місяці / Роки</div>
+                  <div class="bg-black/60 p-4 text-sm text-green-400/80 text-center font-medium">1 секунда</div>
+                </div>
+                <div class="grid grid-cols-3 gap-px bg-white/5">
+                  <div class="bg-black/60 p-4 text-sm text-white/70">Вартість зміни</div>
+                  <div class="bg-black/60 p-4 text-sm text-white/40 text-center">Будівництво</div>
+                  <div class="bg-black/60 p-4 text-sm text-white/70 text-center">Новий файл</div>
+                </div>
+                <div class="grid grid-cols-3 gap-px bg-white/5">
+                  <div class="bg-black/60 p-4 text-sm text-white/70">Час роботи</div>
+                  <div class="bg-black/60 p-4 text-sm text-white/40 text-center">~10 год/день</div>
+                  <div class="bg-black/60 p-4 text-sm text-green-400/80 text-center font-medium">16+ год/день</div>
+                </div>
+                <div class="grid grid-cols-3 gap-px bg-white/5">
+                  <div class="bg-black/60 p-4 text-sm text-white/70">Масштабування</div>
+                  <div class="bg-black/60 p-4 text-sm text-white/40 text-center">З нуля</div>
+                  <div class="bg-black/60 p-4 text-sm text-white/70 text-center">Копіювати систему</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- SECTION 6: The Engine -->
+    <section class="section" id="engine">
+        <div class="w-full max-w-5xl">
+          <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              <p class="text-[10px] mono uppercase tracking-widest text-white/40 mb-4">Технологічне серце</p>
+              <h2 class="text-3xl md:text-5xl font-medium tracking-tight mb-6">The Engine</h2>
+              <p class="text-white/50 leading-relaxed mb-8 bg-white/5 rounded-xl px-5 py-4 backdrop-blur-sm">
+                Це не набір пристроїв. Це <span class="text-white">адаптивна медіа-архітектура</span>, що створює не один сценарій, а генеративну систему сценаріїв.
+              </p>
+              
+              <div class="grid grid-cols-2 gap-3">
+                <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+                  <iconify-icon icon="solar:eye-scan-linear" class="text-cyan-400/70" width="20"></iconify-icon>
+                  <span class="text-xs text-white/70">Реагує на рухи</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+                  <iconify-icon icon="solar:cpu-bolt-linear" class="text-cyan-400/70" width="20"></iconify-icon>
+                  <span class="text-xs text-white/70">Аналізує поведінку</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+                  <iconify-icon icon="solar:magic-stick-3-linear" class="text-cyan-400/70" width="20"></iconify-icon>
+                  <span class="text-xs text-white/70">Генерує контент</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex items-center gap-3">
+                  <iconify-icon icon="solar:soundwave-linear" class="text-cyan-400/70" width="20"></iconify-icon>
+                  <span class="text-xs text-white/70">Синхронізує все</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-panel rounded-2xl p-8 text-center">
+              <div class="text-7xl md:text-8xl font-medium bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 mb-4">1s</div>
+              <p class="text-sm text-white/50">час зміни середовища</p>
+              
+              <div class="mt-8 pt-8 border-t border-white/5">
+                <p class="text-xs text-white/40 leading-relaxed">
+                  Ми не програмуємо один сценарій.<br>
+                  <span class="text-white/70">Ми створюємо систему, що здатна створювати сценарії.</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- SECTION 7: B2B -->
+    <section class="section" id="b2b">
+        <div class="w-full max-w-5xl">
+          <div class="mb-10">
+            <p class="text-[10px] mono uppercase tracking-widest text-white/40 mb-4">B2B можливості</p>
+            <h2 class="text-3xl md:text-5xl font-medium tracking-tight">Потенціал подій</h2>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="md:col-span-2">
+              <div class="glass-panel rounded-2xl p-8 h-full">
+                <div class="flex items-start gap-4 mb-8">
+                  <div class="p-3 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-white/10">
+                    <iconify-icon icon="solar:magic-stick-3-linear" class="text-white" width="24"></iconify-icon>
+                  </div>
+                  <div>
+                    <h3 class="text-lg font-medium text-white mb-2">Брендована трансформація</h3>
+                    <p class="text-sm text-white/50">Повна зміна простору під формат клієнта — без фізичної перебудови залу</p>
+                  </div>
+                </div>
+                
+                <div class="glass-card rounded-xl p-6 mb-6">
+                  <div class="text-[10px] mono uppercase tracking-wider text-white/40 mb-3">Приклад</div>
+                  <p class="text-sm text-white/70 leading-relaxed">
+                    Презентація нового продукту — за кілька хвилин простір перетворюється на 
+                    <span class="text-cyan-400">цифрову лабораторію бренду</span> або інтерактивний світ компанії.
+                  </p>
+                </div>
+                
+                <div class="flex flex-wrap gap-3">
+                  <div class="flex items-center gap-2 text-xs text-white/50">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-green-400" width="16"></iconify-icon>
+                    Високий чек оренди
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-white/50">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-green-400" width="16"></iconify-icon>
+                    Швидка адаптація
+                  </div>
+                  <div class="flex items-center gap-2 text-xs text-white/50">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-green-400" width="16"></iconify-icon>
+                    Економія для клієнта
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="space-y-4">
+              <div class="glass-card rounded-xl p-5 text-center">
+                <iconify-icon icon="solar:presentation-graph-linear" class="text-white/40 mb-2" width="24"></iconify-icon>
+                <div class="text-xl font-medium text-white">$2000+</div>
+                <div class="text-[10px] text-white/40">мін. оренда</div>
+              </div>
+              <div class="glass-card rounded-xl p-5 text-center">
+                <iconify-icon icon="solar:clock-circle-linear" class="text-white/40 mb-2" width="24"></iconify-icon>
+                <div class="text-xl font-medium text-white">5 хв</div>
+                <div class="text-[10px] text-white/40">на трансформацію</div>
+              </div>
+              <div class="glass-card rounded-xl p-5 text-center">
+                <iconify-icon icon="solar:chart-2-linear" class="text-white/40 mb-2" width="24"></iconify-icon>
+                <div class="text-xl font-medium text-white">0</div>
+                <div class="text-[10px] text-white/40">фіз. продакшн</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- SECTION 8: Business Model -->
+    <section class="section" id="business">
+        <div class="w-full max-w-5xl">
+          <div class="text-center mb-10">
+            <p class="text-[10px] mono uppercase tracking-widest text-white/40 mb-4">Бізнес-модель</p>
+            <h2 class="text-3xl md:text-5xl font-medium tracking-tight">Потоки доходів</h2>
+            <p class="text-sm text-white/40 mt-4">Три режими роботи — постійна монетизація без простою</p>
+          </div>
+          
+          <div class="grid md:grid-cols-3 gap-4 mb-8">
+            <div class="glass-card rounded-2xl p-6 text-center hover:bg-white/[0.04] transition-colors">
+              <div class="w-12 h-12 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center mx-auto mb-4">
+                <iconify-icon icon="solar:sun-2-linear" class="text-amber-400" width="20"></iconify-icon>
+              </div>
+              <div class="text-[10px] mono uppercase tracking-wider text-white/40 mb-2">День — музей</div>
+              <div class="text-lg font-medium text-white mb-1">100 × 500₴</div>
+              <div class="text-xs text-white/40">щодня</div>
+            </div>
+            
+            <div class="glass-panel rounded-2xl p-6 text-center border-purple-500/20">
+              <div class="w-12 h-12 rounded-full bg-purple-500/10 border border-purple-500/20 flex items-center justify-center mx-auto mb-4">
+                <iconify-icon icon="solar:moon-stars-linear" class="text-purple-400" width="20"></iconify-icon>
+              </div>
+              <div class="text-[10px] mono uppercase tracking-wider text-white/40 mb-2">Вечір — клуб</div>
+              <div class="text-lg font-medium text-white mb-1">100 × 750-1500₴</div>
+              <div class="text-xs text-white/40">2 рази на тиждень + бар</div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 text-center hover:bg-white/[0.04] transition-colors">
+              <div class="w-12 h-12 rounded-full bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center mx-auto mb-4">
+                <iconify-icon icon="solar:buildings-2-linear" class="text-cyan-400" width="20"></iconify-icon>
+              </div>
+              <div class="text-[10px] mono uppercase tracking-wider text-white/40 mb-2">Корпоративна подія</div>
+              <div class="text-lg font-medium text-white mb-1">від $2000</div>
+              <div class="text-xs text-white/40">раз на місяць</div>
+            </div>
+          </div>
+          
+          <div class="glass-panel rounded-2xl p-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div class="flex items-center gap-8">
+                <div class="text-center">
+                  <div class="text-3xl font-medium bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-purple-400">~3M₴</div>
+                  <div class="text-[10px] text-white/40">виручка / місяць</div>
+                </div>
+                <div class="h-10 w-px bg-white/10 hidden md:block"></div>
+                <div class="text-center">
+                  <div class="text-3xl font-medium text-white">~$80K</div>
+                  <div class="text-[10px] text-white/40">в доларах</div>
+                </div>
+              </div>
+              
+              <div class="flex gap-4 text-[10px] mono text-white/40">
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-cyan-400"></div>
+                  <span>Квитки 50%</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-purple-400"></div>
+                  <span>Бар 15%</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <div class="w-2 h-2 rounded-full bg-white/40"></div>
+                  <span>Оренда 6%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- SECTION 9: Why Now -->
+    <section class="section" id="why-now">
+        <div class="w-full max-w-5xl">
+          <div class="mb-10">
+            <p class="text-[10px] mono uppercase tracking-widest text-white/40 mb-4">Market Timing</p>
+            <h2 class="text-3xl md:text-5xl font-medium tracking-tight">Чому зараз?</h2>
+          </div>
+          
+          <div class="grid md:grid-cols-2 gap-4 mb-8">
+            <div class="glass-card rounded-2xl p-6 hover:bg-white/[0.04] transition-colors group">
+              <div class="flex items-start gap-4">
+                <div class="p-2 rounded-lg bg-green-500/10 text-green-400 border border-green-500/20 group-hover:bg-green-500/20 transition-colors">
+                  <iconify-icon icon="solar:arrow-down-linear" width="18"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="text-sm font-medium text-white mb-2">Доступність технологій</h4>
+                  <p class="text-xs text-white/50 leading-relaxed">4K проєктори, LED-рішення та realtime-движки стали фінансово доступними</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 hover:bg-white/[0.04] transition-colors group">
+              <div class="flex items-start gap-4">
+                <div class="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 group-hover:bg-cyan-500/20 transition-colors">
+                  <iconify-icon icon="solar:arrow-up-linear" width="18"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="text-sm font-medium text-white mb-2">Бум "Економіки вражень"</h4>
+                  <p class="text-xs text-white/50 leading-relaxed">Аудиторія обирає досвід замість володіння. Глобальний тренд.</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 hover:bg-white/[0.04] transition-colors group">
+              <div class="flex items-start gap-4">
+                <div class="p-2 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 group-hover:bg-purple-500/20 transition-colors">
+                  <iconify-icon icon="solar:city-linear" width="18"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="text-sm font-medium text-white mb-2">Ревіталізація міст</h4>
+                  <p class="text-xs text-white/50 leading-relaxed">Індустріальні зони шукають нові культурні магніти</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-6 hover:bg-white/[0.04] transition-colors group">
+              <div class="flex items-start gap-4">
+                <div class="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 group-hover:bg-amber-500/20 transition-colors">
+                  <iconify-icon icon="solar:bolt-linear" width="18"></iconify-icon>
+                </div>
+                <div>
+                  <h4 class="text-sm font-medium text-white mb-2">Швидкість трендів</h4>
+                  <p class="text-xs text-white/50 leading-relaxed">Статичні формати не встигають за зміною запиту</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="glass-panel rounded-2xl p-6 border-l-2 border-l-cyan-500/50">
+            <p class="text-sm text-white/70 leading-relaxed">
+              Технології стали достатньо дешевими, аудиторія — достатньо готовою, міста — достатньо відкритими.
+              <span class="text-white font-medium">Вікно можливостей відкрите зараз.</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+    <!-- SECTION 10: Future -->
+    <section class="section" id="future">
+        <div class="text-center max-w-3xl">
+          <p class="text-[10px] mono uppercase tracking-widest text-white/40 mb-6">Візія</p>
+          <h2 class="text-4xl md:text-6xl font-medium tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 mb-6">
+            Future Is Now
+          </h2>
+          <p class="text-lg text-white/50 leading-relaxed mb-12">
+            Світ змінюється швидше, ніж будь-коли.<br>
+            Ми створюємо простір, здатний змінюватися разом із ним — миттєво.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+            <div class="glass-card rounded-xl px-6 py-4 flex items-center gap-3">
+              <iconify-icon icon="solar:rocket-2-linear" class="text-cyan-400" width="20"></iconify-icon>
+              <span class="text-sm text-white/70">Технологічна платформа</span>
+            </div>
+            <div class="glass-card rounded-xl px-6 py-4 flex items-center gap-3">
+              <iconify-icon icon="solar:global-linear" class="text-purple-400" width="20"></iconify-icon>
+              <span class="text-sm text-white/70">Масштабування</span>
+            </div>
+            <div class="glass-card rounded-xl px-6 py-4 flex items-center gap-3">
+              <iconify-icon icon="solar:atom-linear" class="text-amber-400" width="20"></iconify-icon>
+              <span class="text-sm text-white/70">Культура + Бізнес + Tech</span>
+            </div>
+          </div>
+          
+          <button class="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full hover:scale-105 transition-transform duration-300 shadow-[0_0_30px_rgba(255,255,255,0.15)]">
+            <span class="text-sm font-semibold tracking-wide">Стати частиною проєкту</span>
+            <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+          </button>
+          
+          <p class="text-xs text-white/30 mt-8">
+            Запрошуємо вас стати частиною нового формату міського досвіду
+          </p>
+        </div>
+    </section>
+
+  <script>
+    const bg1 = document.getElementById('bg1');
+    const bg2 = document.getElementById('bg2');
+    const bg3 = document.getElementById('bg3');
+
+    function lerp(a, b, t) {
+      return a + (b - a) * Math.max(0, Math.min(1, t));
+    }
+
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = Math.min(scrollTop / docHeight, 1);
+
+      // 0..0.33 = bg1 -> bg2, 0.33..0.66 = bg2 -> bg3, 0.66..1 = bg3
+      const p1 = 1 - Math.min(progress / 0.33, 1);
+      const p2 = progress < 0.33 
+        ? lerp(0, 1, progress / 0.33) 
+        : lerp(1, 0, (progress - 0.33) / 0.33);
+      const p3 = progress < 0.33 
+        ? 0 
+        : Math.min((progress - 0.33) / 0.33, 1);
+
+      bg1.style.opacity = p1;
+      bg2.style.opacity = p2;
+      bg3.style.opacity = p3;
+    });
+
+    // Static grid — random cells visible at 10%, rest transparent
+    const canvas = document.getElementById('gridCanvas');
+    const ctx = canvas.getContext('2d');
+    const cellSize = 60;
+
+    function drawGrid() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      const cols = Math.ceil(canvas.width / cellSize) + 1;
+      const rows = Math.ceil(canvas.height / cellSize) + 1;
+
+      for (let r = 0; r < rows; r++) {
+        for (let c = 0; c < cols; c++) {
+          const x = c * cellSize;
+          const y = r * cellSize;
+          const visible = Math.random() < 0.35;
+          const alpha = visible ? 0.10 : 0;
+
+          if (visible) {
+            ctx.fillStyle = `rgba(255,255,255,${alpha * 0.3})`;
+            ctx.fillRect(x + 1, y + 1, cellSize - 2, cellSize - 2);
+          }
+
+          ctx.strokeStyle = `rgba(255,255,255,${visible ? alpha : 0.02})`;
+          ctx.lineWidth = 0.5;
+          ctx.strokeRect(x, y, cellSize, cellSize);
+
+          ctx.beginPath();
+          ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255,255,255,${visible ? 0.15 : 0.03})`;
+          ctx.fill();
+        }
+      }
+    }
+
+    drawGrid();
+    window.addEventListener('resize', drawGrid);
+  </script>
+</body>
+</html>
